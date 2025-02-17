@@ -1,6 +1,14 @@
 import { parseArgs } from "jsr:@std/cli/parse-args";
-import { red, yellow, blue, magenta, bgGreen } from "jsr:@std/fmt/colors";
+import {
+  red,
+  yellow,
+  blue,
+  magenta,
+  bgBrightBlue,
+  bgGreen,
+} from "jsr:@std/fmt/colors";
 import { toKebabCase, toSnakeCase } from "jsr:@std/text";
+import { toUpperCaseWithC } from "./ffi.ts";
 
 const flags = parseArgs(Deno.args, {
   boolean: ["kebab", "snake"],
@@ -29,6 +37,7 @@ console.log(bgGreen("Access Granted!"));
 console.log();
 
 console.log(yellow(flags.text.toUpperCase()));
+console.log(bgBrightBlue(toUpperCaseWithC(flags.text)));
 flags.kebab && console.log(blue(toKebabCase(flags.text)));
 flags.snake && console.log(magenta(toSnakeCase(flags.text)));
 console.log(flags);
